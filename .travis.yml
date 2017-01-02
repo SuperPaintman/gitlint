@@ -1,0 +1,33 @@
+sudo: false
+
+language: node_js
+node_js: "6"
+
+cache:
+  yarn: true
+
+env:
+  global:
+    - "NODE_ENV=test"
+    - "YARN_VERSION=0.17.10"
+
+before_install:
+  # Instal deps
+  - "npm install -g yarn@${YARN_VERSION}"
+  - "yarn global add coveralls istanbul --no-progress"
+  - "(NODE_ENV=development && yarn install --ignore-scripts --no-progress)"
+  - "yarn ls"
+
+script:
+  # Lint
+  - "npm run lint"
+  # Test
+  - "npm run test-ci"
+
+after_script:
+  # coveralls
+  - "cat ./coverage/lcov.info | coveralls"
+
+branches:
+  except:
+    - gh-pages

@@ -1,0 +1,25 @@
+# Git
+.git/
+
+# NPM
+node_modules/
+
+# TMP
+tmp/
+.gulp-tmp/
+
+# Builds
+lib/
+
+# Tests
+coverage/
+
+# Logs
+logs/
+*.log
+
+# Docs
+docs/
+
+# README
+README/*.psd
